@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+.sidebar-section {
+    margin-bottom: 50px;
+}
+
+.sidebar .category-widget-section h3{
+  line-height: 52px;
+    height: 52px;
+    background-color: #f2f5f6;
+    padding: 0 20px;
+    margin-top: 0;
+    font-family: 'Playfair Display';
+    cursor: pointer;
+}
