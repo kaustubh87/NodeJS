@@ -3,6 +3,7 @@ var assert = require('assert');
 var url = "mongodb://localhost:27017/meanstack";
 
 
+
 //Inserting documents into database.
 
 var insertDocument = function (db, callback) {
@@ -40,21 +41,3 @@ var findRestaurants = function (db, callback) {
             }
         });
 };
-
-
-MongoClient.connect(url, function (err, db) {
-
-    assert.equal(err, null);
-    
-    insertDocument(db, function(){
-        console.log('Inserting document');
-        db.close();
-    });
-
-    findRestaurants(db, function(){
-        console.log('Finding restaruants');
-        db.close();
-    });
-
-    process.exit(1);
-});
