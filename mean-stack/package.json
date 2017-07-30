@@ -9,6 +9,7 @@
   "author": "Kaustubh Vinzanekar",
   "license": "ISC",
   "dependencies": {
-    "eslint": "^4.3.0"
+    "eslint": "^4.3.0",
+    "mongodb": "^2.2.30"
   }
 }
