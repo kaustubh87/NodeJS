@@ -5,6 +5,7 @@ var compress = require('compression');
 var bodyParser = require('body-parser');
 //method override provides DELETE and PUT HTTP verbs legacy support
 var methodOverride = require('method-override');
+var config = require('./config');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -18,6 +19,12 @@ if(process.env.NODE_ENV === 'development'){
 
 app.use(bodyParser.urlencoded({
     extended : true
+}));
+
+app.use(session({
+    saveUnintialized : true,
+    resave: true,
+    secret: config.sessionSecret
 }));
 
 app.use(bodyParser.json());
