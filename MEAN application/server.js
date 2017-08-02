@@ -23,10 +23,18 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(methodOverride());
 
+app.set('views', './app/views');
+app.set('view engine', 'ejs');
+
 app.use('/', function(req,res){
-    res.send('Hello World');
+    res.render('index', {
+        title : 'Hello World'
+    })
 });
+
 
 app.listen(5000, function(req,res){
     console.log('Server running at 5000');
 });
+
+app.use(express.static('./public'));
