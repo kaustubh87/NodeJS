@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 //method override provides DELETE and PUT HTTP verbs legacy support
 var methodOverride = require('method-override');
 var config = require('./config');
+var session = require('express-session');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -22,7 +23,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-    saveUnintialized : true,
+    saveUninitialized : true,
     resave: true,
     secret: config.sessionSecret
 }));
@@ -33,10 +34,15 @@ app.use(methodOverride());
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
 
-app.use('/', function(req,res){
+app.use('/index', function(req,res){
+    if(req.session.lastVisit){
+        console.log(req.session.lastVisit);
+    }
+
+    req.session.lastVisit = new Date();
     res.render('index', {
         title : 'Hello World'
-    })
+    });
 });
 
 
