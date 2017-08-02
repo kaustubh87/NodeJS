@@ -7,6 +7,14 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var config = require('./config');
 var session = require('express-session');
+var mongoose = require('mongoose');
+var uri = "mongodb://localhost:27017/mean-book";
+
+require('./app/models/User');
+
+var db = mongoose.connect('uri', function(){
+    console.log('Database connected');
+});
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -44,6 +52,8 @@ app.use('/index', function(req,res){
         title : 'Hello World'
     });
 });
+
+require('./app/routes/User')(app);
 
 
 app.listen(5000, function(req,res){
