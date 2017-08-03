@@ -8,11 +8,11 @@ var methodOverride = require('method-override');
 var config = require('./config');
 var session = require('express-session');
 var mongoose = require('mongoose');
-var uri = "mongodb://localhost:27017/mean-book";
-
+var uri = "mongodb://localhost/mean-book";
 require('./app/models/User');
+var userRoutes = require('./app/routes/User');
 
-var db = mongoose.connect('uri', function(){
+mongoose.connect('uri', function(){
     console.log('Database connected');
 });
 
@@ -20,15 +20,9 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var app = express();
 
-if(process.env.NODE_ENV === 'development'){
-    app.use(morgan('dev'));
-} else if(process.env.NODE_ENV === 'production'){
-    app.use(compress());
-}
-
-app.use(bodyParser.urlencoded({
-    extended : true
-}));
+app.use(express.static(__dirname+'/public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
     saveUninitialized : true,
@@ -36,11 +30,12 @@ app.use(session({
     secret: config.sessionSecret
 }));
 
-app.use(bodyParser.json());
 app.use(methodOverride());
 
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
+
+app.use('/api', userRoutes);
 
 app.use('/index', function(req,res){
     if(req.session.lastVisit){
@@ -53,7 +48,6 @@ app.use('/index', function(req,res){
     });
 });
 
-require('./app/routes/User')(app);
 
 
 app.listen(5000, function(req,res){
