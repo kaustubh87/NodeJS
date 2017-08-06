@@ -18,3 +18,11 @@ module.exports.addUser = function(req, res) {
 
     });
 };
+
+
+module.exports.findUsers = function(req, res) {
+
+    User.find({}, function(err, users) {
+        res.json(users);
+    });
+};

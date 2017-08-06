@@ -4,10 +4,15 @@ var router = express.Router();
 var users = require('../controllers/userController');
 
 router.post('/users', users.addUser);
-router.get('/users', function(req,res){
+router.get('/users', function(req, res) {
     res.render('index', {
-        title : "API Index Page"
+        title: "API Index Page"
     });
+});
+
+router.get('/', function(req, res) {
+    res.render('index', users.findUsers);
+
 });
 
 module.exports = router;
