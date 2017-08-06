@@ -28,16 +28,6 @@ app.set('view engine', 'ejs');
 
 app.use('/api', userRoutes);
 
-app.use('/index', function(req, res) {
-    if (req.session.lastVisit) {
-        console.log(req.session.lastVisit);
-    }
-
-    req.session.lastVisit = new Date();
-    res.render('index', {
-        title: 'Hello World'
-    });
-});
 
 mongoose.connect('uri', function() {
     console.log('Database connected');
