@@ -1,40 +1,35 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-//method override provides DELETE and PUT HTTP verbs legacy support
-var config = require('./config');
-var session = require('express-session');
-var mongoose = require('mongoose');
-var uri = "mongodb://localhost/mean-book";
-require('./app/models/User');
-var userRoutes = require('./app/routes/User');
-
-
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 var app = express();
+var path = require('path');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+require('./app/models/User');
+
+
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(session({
-    saveUninitialized: true,
-    resave: true,
-    secret: config.sessionSecret
-}));
-
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
 
-app.use('/api', userRoutes);
+var routes = require('./app/routes/User');
 
+app.use('/api', routes);
 
-mongoose.connect('uri', function() {
-    console.log('Database connected');
+// Connect to mongoose
+
+mongoose.connect('mongodb://localhost/book-data', function(err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('db connected');
+    }
+
 });
 
-app.listen(5000, function(req, res) {
-    console.log('Server running at 5000');
+var port = process.env.PORT || 3110;
+app.listen(port, function() {
+    console.log('Starting server at ' + port);
 });
-
-app.use(express.static('./public'));
