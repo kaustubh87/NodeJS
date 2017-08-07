@@ -40,3 +40,12 @@ module.exports.updateUser = function(req, res) {
         res.json(user);
     });
 };
+
+module.exports.deleteUser = function(req, res) {
+
+    User.findByIdAndRemove(req.params.id, req.body, function(err, user) {
+        res.json({
+            message: 'User Deleted'
+        });
+    });
+};
