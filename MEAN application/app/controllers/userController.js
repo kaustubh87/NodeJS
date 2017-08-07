@@ -32,4 +32,11 @@ module.exports.findUsersById = function(req, res) {
     var param = req.params.id;
     console.log(param);
 
-}
+};
+
+module.exports.updateUser = function(req, res) {
+
+    User.findByIdAndUpdate(req.params.id, req.body, function(err, user) {
+        res.json(user);
+    });
+};
