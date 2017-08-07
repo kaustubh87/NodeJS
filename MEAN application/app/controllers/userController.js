@@ -26,3 +26,10 @@ module.exports.findUsers = function(req, res) {
         res.json(users);
     });
 };
+
+module.exports.findUsersById = function(req, res) {
+
+    var param = req.params.id;
+    console.log(param);
+
+}
