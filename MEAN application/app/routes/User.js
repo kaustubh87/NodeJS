@@ -14,5 +14,6 @@ router.get('/users/list', users.findUsers);
 
 router.get('/users/:id', users.findUsersById);
 
+router.put('/users/:id', users.updateUser);
 
 module.exports = router;
