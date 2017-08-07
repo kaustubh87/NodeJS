@@ -10,9 +10,9 @@ router.get('/users', function(req, res) {
     });
 });
 
-router.get('/', function(req, res) {
-    res.render('index', users.findUsers);
+router.get('/users/list', users.findUsers);
 
-});
+router.get('/users/:id', users.findUsersById);
+
 
 module.exports = router;
