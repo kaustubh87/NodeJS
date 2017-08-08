@@ -15,3 +15,10 @@ module.exports.addPost = function(req, res) {
     post.save();
     //console.log('Post Saved');
 };
+
+module.exports.getPost = function(req, res) {
+
+    Post.find().populate('author').exec(function(err, posts) {
+        res.json(posts);
+    });
+};
