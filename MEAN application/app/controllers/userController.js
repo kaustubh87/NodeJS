@@ -1,11 +1,9 @@
 var mongoose = require('mongoose');
 
 var User = mongoose.model('User');
-var Post = mongoose.model('Posts');
+
 
 module.exports.addUser = function(req, res) {
-
-
 
     User.create({
         firstName: req.body.firstName,
