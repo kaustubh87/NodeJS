@@ -20,6 +20,8 @@ router.put('/users/:id', users.updateUser);
 
 router.delete('/users/:id', users.deleteUser);
 
+router.get('/posts', posts.getPost);
+
 router.post('/posts/add', posts.addPost);
 
 module.exports = router;
