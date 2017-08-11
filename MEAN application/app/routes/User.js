@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 
 var users = require('../controllers/userController');
 var posts = require('../controllers/postController');
@@ -23,5 +24,19 @@ router.delete('/users/:id', users.deleteUser);
 router.get('/posts', posts.getPost);
 
 router.post('/posts/add', posts.addPost);
+
+router.get('/signup', users.signup);
+
+router.post('/signup', users.signup);
+
+router.get('/signin', users.renderSignin);
+
+router.post('/signin', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/signin',
+    failureFlash: true
+}));
+
+router.get('/signout', users.signout);
 
 module.exports = router;
