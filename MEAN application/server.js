@@ -4,6 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var flash = require('connect-flash');
 require('./app/models/User');
 require('./app/models/Posts')
 
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
