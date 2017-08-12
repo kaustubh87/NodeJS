@@ -15,6 +15,8 @@ router.get('/users', function(req, res) {
 
 router.get('/users/list', users.findUsers);
 
+router.get('/users/find', users.findUsers);
+
 router.get('/users/:id', users.findUsersById);
 
 router.put('/users/:id', users.updateUser);
