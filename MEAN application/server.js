@@ -14,10 +14,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
-app.use(flash());
+
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
 var routes = require('./app/routes/User');
 
 app.use('/api', routes);
