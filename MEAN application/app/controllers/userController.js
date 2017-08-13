@@ -71,7 +71,7 @@ module.exports.signup = function(req, res, next) {
 };
 
 module.exports.signout = function(req, res) {
-    res.logout();
+    req.logout();
     res.redirect('/');
 };
 
