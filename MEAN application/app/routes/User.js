@@ -27,7 +27,7 @@ router.get('/posts', posts.getPost);
 
 router.post('/posts/add', posts.addPost);
 
-router.get('/signup', users.signup);
+router.get('/signup', users.renderSignup);
 
 router.post('/signup', users.signup);
 
@@ -35,8 +35,7 @@ router.get('/signin', users.renderSignin);
 
 router.post('/signin', passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/signin',
-    failureFlash: true
+    failureRedirect: '/signin'
 }));
 
 router.get('/signout', users.signout);
