@@ -4,15 +4,24 @@
     <title><%= title %></title>
 </head>
 <body>
-
+<% if (user) {%>
+<a href="/signout">Signout</a>
+<% } else { %>
+    <a href="/signup">Signup</a>
+    <a href="/signin">Signin</a>
+<%}%>
  <section ng-view></section>
-
+<script type="text/javascript">
+    window.user = <%- user || 'null' %>;
+  </script>
 
 <script type="text/javascript" src="/lib/angular/angular.js"></script>
 <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
 <script type="text/javascript" src="/example/module.js"></script>
 <script type="text/javascript" src="/example/controllers/controller.js"></script>
 <script type="text/javascript" src="/example/config/routes.js"></script>
+<script type="text/javascript" src="/users/services/module.js"></script>
+<script type="text/javascript" src="/users/services/service.js"></script>
 <script type="text/javascript" src="/application.js"></script>
 </body>
 </html>
