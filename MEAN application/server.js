@@ -5,7 +5,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 require('./app/models/User');
-require('./app/models/Posts')
+require('./app/models/Posts');
+require('./app/models/Article');
+
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
