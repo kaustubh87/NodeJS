@@ -12,3 +12,13 @@ module.exports.create = function(req, res) {
         }
     });
 };
+
+module.exports.list = function(req, res) {
+    Article.find().sort('-created').populate('creator', 'firstName lastName fullName').exec(function(err, articles) {
+        if (err) {
+            return err;
+        } else {
+            res.json(articles);
+        }
+    });
+};
