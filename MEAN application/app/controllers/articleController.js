@@ -48,3 +48,15 @@ module.exports.update = function(req, res) {
         }
     });
 };
+
+module.exports.delete = function(req, res) {
+    var article = req.article;
+
+    article.remove(function(err) {
+        if (err) {
+            return err;
+        } else {
+            res.json(article);
+        }
+    });
+};
