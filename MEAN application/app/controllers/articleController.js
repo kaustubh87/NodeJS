@@ -22,3 +22,10 @@ module.exports.list = function(req, res) {
         }
     });
 };
+
+module.exports.articleById = function(req, res) {
+    Article.findById(id).populate('creator', 'firstName lastName fullName').exec(function(err, article) {
+        if (err) return next(err);
+        req.article = article;
+    });
+};
