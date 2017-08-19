@@ -29,3 +29,7 @@ module.exports.articleById = function(req, res) {
         req.article = article;
     });
 };
+
+module.exports.read = function(req, res) {
+    res.json(req.article);
+};
