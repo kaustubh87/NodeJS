@@ -33,3 +33,18 @@ module.exports.articleById = function(req, res) {
 module.exports.read = function(req, res) {
     res.json(req.article);
 };
+
+module.exports.update = function(req, res) {
+    var article = req.article;
+
+    article.title = req.body.title;
+    article.content = req.body.content;
+
+    article.save(function(err) {
+        if (err) {
+            return err;
+        } else {
+            res.json(article);
+        }
+    });
+};
