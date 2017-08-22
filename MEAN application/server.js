@@ -7,6 +7,7 @@ var passport = require('passport');
 require('./app/models/User');
 require('./app/models/Posts');
 require('./app/models/Article');
+require('./app/routes/articles');
 
 
 app.use(express.static(__dirname + '/public'));
